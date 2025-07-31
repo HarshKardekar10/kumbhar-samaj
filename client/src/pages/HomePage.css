@@ -1,0 +1,32 @@
+/* Hero Section Styling */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1557871725-324a3f5ce158?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  min-height: 400px;
+}
+
+.hero-section h1 {
+  font-family: serif; /* A more traditional, elegant font */
+}
+
+/* Feature Card Styling */
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.feature-icon {
+  color: #0d6efd; /* Bootstrap primary color */
+}
+
+/* Latest Updates Section */
+.latest-updates-section {
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+}

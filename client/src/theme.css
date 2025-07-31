@@ -1,0 +1,100 @@
+/* --- Kumbhar Community Pottery Theme --- */
+
+/* 1. Import Fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+/* 2. Define Color Palette and Root Variables */
+:root {
+  --terracotta: #E07A5F; /* A warm, earthy orange-red */
+  --sand: #F4F1DE;      /* A light, sandy off-white for backgrounds */
+  --clay: #8D8741;      /* A deep, earthy green-brown */
+  --charcoal: #3D405B;  /* A dark, soft black for text */
+  --cream: #FDFCF7;     /* A clean white for cards and modals */
+  
+  --primary-font: 'Poppins', sans-serif;
+  --heading-font: 'Merriweather', serif;
+}
+
+/* 3. Global Body Styles */
+body {
+  background-color: var(--sand);
+  font-family: var(--primary-font);
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+/* 4. Themed Components */
+
+/* Navbar */
+.navbar-theme {
+  background-color: var(--charcoal);
+  border-bottom: 3px solid var(--terracotta);
+}
+.navbar-theme .navbar-brand,
+.navbar-theme .nav-link {
+  color: var(--sand) !important;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+.navbar-theme .nav-link:hover,
+.navbar-theme .navbar-brand:hover {
+  color: var(--terracotta) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--terracotta);
+  border-color: var(--terracotta);
+  color: var(--cream);
+  font-weight: 600;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #d46d52;
+  border-color: #d46d52;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-outline-primary {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+}
+.btn-outline-primary:hover {
+    background-color: var(--terracotta);
+    color: var(--cream);
+}
+
+
+/* Cards */
+.card {
+  border: none;
+  background-color: var(--cream);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Forms */
+.form-control {
+  border: 1px solid #ddd;
+  background-color: var(--cream);
+}
+.form-control:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 0.25rem rgba(224, 122, 95, 0.25);
+}
+
+/* Footer */
+.footer-theme {
+    background-color: var(--charcoal);
+    color: var(--sand);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 4rem;
+}
