@@ -1,12 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const { getPosts, createPost } = require('../controllers/postController');
-const protect = require('../middleware/authMiddleware'); // To protect post creation
+const protect = require('../middleware/authMiddleware');
+const admin = require('../middleware/adminMiddleware');
+
+// --- Import all necessary functions from the controller ---
+const { 
+  getPosts, 
+  createPost, 
+  getPostById // Make sure this is included
+} = require('../controllers/postController');
+
+
+// --- Define Routes ---
 
 // Public route to get all posts
 router.get('/', getPosts);
 
-// Private route to create a post (we'll assume only logged-in users can for now)
-router.post('/', protect, createPost);
+// Public route to get a single post by its ID
+router.get('/:id', getPostById);
+
+// Private route for admins to create a new post
+router.post('/', protect, admin, createPost);
+
 
 module.exports = router;

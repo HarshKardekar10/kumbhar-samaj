@@ -25,3 +25,13 @@ exports.createPost = async (req, res) => {
     res.status(500).json({ message: 'Failed to create post', error: error.message });
   }
 };
+
+exports.getPostById = async (req, res) => {
+    try {
+        const post = await Post.findByPk(req.params.id);
+        if (!post) return res.status(404).json({ message: 'Post not found' });
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error' });
+    }
+};

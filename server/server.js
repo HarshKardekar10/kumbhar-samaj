@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path'); // Import the 'path' module
 const sequelize = require('./config/db');
+const eventRoutes = require('./routes/eventRoutes'); // Add this
 
 // Route imports
 const authRoutes = require('./routes/authRoutes');
@@ -25,7 +26,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/matrimony', matrimonyRoutes);
-
+app.use('/api/events', eventRoutes); // Add this
 
 const PORT = process.env.PORT || 5000;
 
