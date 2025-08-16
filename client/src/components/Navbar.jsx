@@ -4,12 +4,14 @@ import { AuthContext } from '../context/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
+  // We get both the 'user' and 'logout' function from the context
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // This function will be called when the logout button is clicked
   const handleLogout = () => {
-    logout();
-    navigate('/login'); // Redirect to login after logout
+    logout(); // This clears the user state and token
+    navigate('/login'); // This redirects the user to the login page
   };
 
   return (
@@ -21,16 +23,15 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-center">
-            {/* --- Public Links --- */}
+            {/* Public Links */}
             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/matrimony">Matrimony</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/events">Events</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/donate">Donate</Link></li>
             
-            {/* --- Conditional Links --- */}
             {user ? (
-              // --- Logged In User Links ---
+              // Logged In User Links
               <>
                 {user.isAdmin && (
                   <li className="nav-item">
@@ -41,11 +42,12 @@ const Navbar = () => {
                   <Link className="nav-link" to="/dashboard">My Dashboard</Link>
                 </li>
                 <li className="nav-item">
+                  {/* This button now correctly calls the handleLogout function */}
                   <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
                 </li>
               </>
             ) : (
-              // --- Guest User Links ---
+              // Guest User Links
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">Login</Link>

@@ -1,26 +1,43 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
 const protect = require('../middleware/authMiddleware');
 const admin = require('../middleware/adminMiddleware');
 
-// --- Import all necessary functions from the controller ---
 const { 
   getPosts, 
   createPost, 
-  getPostById // Make sure this is included
+  getPostById,
+  updatePost,
+  deletePost,
+  uploadPostImage // Import the new function
 } = require('../controllers/postController');
 
+// --- Multer Storage Configuration ---
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, `post-${Date.now()}${path.extname(file.originalname)}`);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // --- Define Routes ---
 
-// Public route to get all posts
+// Public routes
 router.get('/', getPosts);
-
-// Public route to get a single post by its ID
 router.get('/:id', getPostById);
 
-// Private route for admins to create a new post
+// Admin routes
 router.post('/', protect, admin, createPost);
+router.put('/:id', protect, admin, updatePost);
+router.delete('/:id', protect, admin, deletePost);
 
+// --- New route for post image upload ---
+router.post('/upload', protect, admin, upload.single('postImage'), uploadPostImage);
 
 module.exports = router;
